@@ -1,275 +1,819 @@
-#🛡️ CAPMeNot
+# **🛡️ CAPMeNot**
 
-Deployed link on Render- https://capmenot-phs9.onrender.com/
-> Detect manipulation before the user clicks pay.
+> **Don't Just Detect Suspicion. Verify Trust.**
 
-CAPMeNot is a browser-based safety assistant that helps users identify online manipulation, dark patterns, phishing attempts, scam websites, suspicious messages, and risky payment requests before they result in financial loss or privacy compromise.
+CAPMeNot is an AI-assisted **Digital Trust & Verification Layer** designed to analyze suspicious digital interactions and evaluate **claims, identity, authority, evidence, and requested actions**.
 
-Unlike traditional security tools that focus primarily on malware and malicious URLs, CAPMeNot focuses on the **human manipulation layer** of cybercrime. It detects deceptive design techniques, fraudulent content, and scam indicators in real time and explains risks in clear, understandable language.
+Instead of simply asking:
 
----
+> **"Does this look like a scam?"**
 
-## 🚀 Overview
-Online scams rarely begin with malicious code. Most begin with manipulation.
-Websites and messages often create:
+CAPMeNot asks:
 
-* False urgency
-* Fake scarcity
-* Emotional pressure
-* Hidden costs
-* Deceptive subscription flows
-* Fake banking alerts
-* Payment scams
-* Credential theft attempts
-
-CAPMeNot identifies these signals and warns users before they make risky decisions.
-The platform combines:
-
-* Dark Pattern Detection
-* Scam Website Analysis
-* Suspicious Message Classification
-* Payment Risk Assessment
-* Explainable AI-based Risk Alerts
-
-into a single browser extension.
+> **"Who is making this claim, are they authorized, what evidence supports it, and is the requested action actually authorized?"**
 
 ---
 
-## 🎯 Problem Statement
-Modern scams exploit human psychology rather than technical vulnerabilities.
-Common examples include:
+**📌 Table of Contents**
 
-* Fake countdown timers
-* "Only 2 left" scarcity tactics
-* Confirmshaming
-* Hidden cancellation options
-* Fake KYC verification pages
-* Courier and electricity bill scams
-* Digital arrest scams
-* UPI collect-request fraud
-* Job scams requiring registration fees
-
-Most existing tools focus on malware and malicious links, leaving users vulnerable to manipulation techniques that influence decision-making.
-
----
-
-## 💡 Proposed Solution
-CAPMeNot is a Chrome Extension that evaluates web pages and messages in real time and provides users with clear, actionable explanations.
-
-### Risk Scores
-
-| Score              | Description                                                                         
-| ------------------ | ------------------------------------------------------------------------------
-| Manipulation Score | Measures pressure, deception, urgency, and coercive design techniques              | Fraud Risk Score   | Measures the likelihood of credential theft, financial fraud, or personal data      abuse |
-
-### Verdict Categories
-Safe → Pushy → Deceptive → Likely Scam
-
-Users are shown exactly which signals triggered the warning, improving awareness and digital literacy.
+* **Problem**
+* **Solution**
+* **Key Features**
+* **System Architecture**
+* **Current Processing Pipeline**
+* **Project Structure**
+* **Technology Stack**
+* **Running the Project**
+* **Testing**
+* **Team Architecture**
+* **Module Contracts**
+* **Core Design Principle**
+* **Roadmap**
+* **Vision**
 
 ---
 
-## ✨ Key Features:
+**🎯 Problem**
 
-### 🔍 Dark Pattern Engine
+Modern scams are becoming increasingly convincing.
 
-Detects:
+Attackers can impersonate:
 
-* Fake countdown timers
-* Scarcity tactics
-* Confirmshaming
-* Pre-selected add-ons
-* Hidden cancellation controls
-* Misleading buttons
-* Unclear pricing and subscriptions
+* 🏦 Banks and financial institutions
+* 🏛️ Government organizations
+* 🎓 College authorities
+* 📞 Customer-support representatives
+* 📦 Delivery agents
+* 🏢 Companies and merchants
 
-### 🌐 Scam Website Detection
+A message may contain a convincing logo, URL, phone number, QR code, or manipulated media.
 
-Checks for:
+Traditional scam detectors often focus on suspicious patterns. However:
 
-* Lookalike domains
-* Punycode URLs
-* Suspicious TLDs
-* Domain inconsistencies
-* Unsafe forms
-* Missing business information
-* Unrealistic discounts
-* Risky payment methods
+> ⚠️ **A message can look legitimate while the person making the request is unauthorized.**
 
-### 💬 Message Scanner
+This creates a deeper trust problem:
 
-Classifies:
-
-* KYC scams
-* Fake bank alerts
-* Digital arrest scams
-* Fake courier notices
-* Fake utility bill warnings
-* Job scams
-* UPI fraud messages
-
-### 💳 Payment Guard
-
-Displays a warning before payment submission when high-risk signals are detected.
-
-### 👨‍👩‍👧 Guardian Mode (Planned)
-
-Allows trusted family members to receive alerts when vulnerable users encounter high-risk scam pages.
+**Identity ≠ Authority ≠ Authorization**
 
 ---
 
-## 🏗️ System Architecture:
+**💡 Solution**
 
-### Frontend
+CAPMeNot introduces a layered verification approach:
 
-* Chrome Extension (Manifest V3)
-* JavaScript / TypeScript
-* Browser Popup UI
-* Risk Overlay Interface
+```text
+DIGITAL INTERACTION
+        ↓
+      CLAIMS
+        ↓
+     IDENTITY
+        ↓
+     AUTHORITY
+        ↓
+      EVIDENCE
+        ↓
+    PROVENANCE
+        ↓
+  REQUESTED ACTION
+        ↓
+ AUTHORIZATION CHECK
+        ↓
+   TRUST VERDICT
+```
 
-### Detection Layer
+The system is designed around explainable outcomes:
 
-* DOM Inspection
-* Rule-Based Pattern Matching
-* URL Analysis
-* Message Classification
+| **Verdict**        | **Meaning**                                         |
+| ------------------ | --------------------------------------------------- |
+| ✅ **VERIFIED**     | Available evidence supports the claim/request       |
+| ⚠️ **UNVERIFIED**  | The claim/request cannot currently be established   |
+| ❌ **CONTRADICTED** | Available evidence conflicts with the claim/request |
 
-### Backend (Optional)
-
-* Vercel Serverless Functions
-* LLM-powered Analysis
-* Supabase Threat Feed
-
----
-
-## 🧠 Hybrid Detection Model
-CAPMeNot follows a hybrid architecture:
-
-1. Local rules handle obvious threats instantly.
-2. AI models analyze ambiguous content.
-3. The interface explains every decision.
-
-This provides:
-
-* Faster response times
-* Reduced API costs
-* Better transparency
-* Improved user trust
+> **CAPMeNot does not rely only on a black-box risk score. It aims to explain why a claim or requested action could not be trusted.**
 
 ---
 
-## 🛠️ Technology Stack
+**🚀 Key Features**
 
-| Component         | Technology                 |
-| ----------------- | -------------------------- |
-| Browser Extension | Chrome Manifest V3         |
-| Frontend          | JavaScript / TypeScript    |
-| Detection Engine  | DOM Analysis + Rule Engine |
-| AI Layer          | LLM API                    |
-| Backend           | Vercel Functions           |
-| Database          | Supabase                   |
-| UI                | Popup + Overlay            |
+**1. 🧠 Claim Extraction**
+
+CAPMeNot extracts important claims from digital messages.
+
+**Example Input**
+
+```text
+"I am from SBI"
+"Your account will be blocked"
+"Pay ₹2500 immediately"
+"Send your OTP"
+```
+
+**Structured Claim**
+
+```json
+{
+  "category": "identity",
+  "value": "Main SBI se bol raha hoon",
+  "evidence": "Main SBI se bol raha hoon",
+  "status": "unverified"
+}
+```
+
+**Current Claim Categories**
+
+* Identity
+* Organization
+* Role
+* Payment
+* Intent
+* Authority
+* Urgency
+
+> **The extraction layer does not decide whether the claim is true. It identifies and structures what is being claimed.**
 
 ---
 
-## 📂 Project Structure
+**2. 🔎 Evidence Extraction**
 
-text
-capmenot/
-├── extension/
-│   ├── manifest.json
-│   ├── background/
-│   ├── content/
-│   ├── popup/
-│   └── rules/
-├── backend/
-├── demo-pages/
-├── docs/
-├── .env.example
-├── package.json
+CAPMeNot extracts supporting digital evidence such as:
+
+* 🔗 URLs
+* 📱 Phone numbers
+* 💳 UPI identifiers
+* 🏢 Organizations
+* 💰 Payment information
+* 🔍 Claim-linked evidence
+
+**Example**
+
+```json
+{
+  "type": "url",
+  "value": "https://example.com",
+  "source": "message"
+}
+```
+
+The extracted evidence is passed to the subsequent trust and authorization layer.
+
+---
+
+**3. 🪪 Identity Verification**
+
+Mentioning an organization does **not** automatically verify identity.
+
+For example:
+
+```text
+"I am from SBI"
+```
+
+does not automatically mean:
+
+```text
+Identity = Verified
+```
+
+Instead:
+
+```text
+Organization → SBI
+Identity     → Unverified
+```
+
+This prevents simple organization-name matching from being treated as proof of identity.
+
+---
+
+**4. 🏛️ Authority Verification**
+
+A genuine employee does not necessarily have authority to perform every action.
+
+CAPMeNot separates:
+
+```text
+Identity
+   ↓
+Role
+   ↓
+Authority
+```
+
+**Example**
+
+```text
+Identity          → Verified
+Role              → Verified
+Payment Authority → Unverified
+```
+
+This distinction is a core part of the CAPMeNot architecture.
+
+---
+
+**5. 🔐 Request Authorization**
+
+CAPMeNot evaluates whether the **requested action itself is authorized**.
+
+**Example**
+
+```text
+Employee Identity → Verified
+Organization      → Verified
+Role              → Verified
+Payment Request   → Not Authorized
+```
+
+**Possible result:**
+
+> 🔴 **Identity Verified — Request Not Authorized**
+
+This allows CAPMeNot to identify risky interactions even when the claimed organization or identity appears legitimate.
+
+---
+
+**6. 💳 Payment & QR Verification**
+
+CAPMeNot can process:
+
+* Payment amounts
+* UPI identifiers
+* QR-derived payment information
+* Payment recipients
+* Payment requests
+
+The QR layer extracts payment information while the trust layer evaluates it.
+
+```text
+Data Extraction
+      ↓
+Verification
+      ↓
+Trust / Risk Decision
+```
+
+---
+
+**7. 🌍 Regional Trust Intelligence**
+
+Scams are often localized.
+
+**Regional context may include:**
+
+* Local organizations
+* Hindi/Hinglish language
+* Regional government schemes
+* Local payment habits
+* Region-specific scam patterns
+
+**Example**
+
+```text
+"UP scholarship verification ke liye
+₹1500 processing fee jama karein."
+```
+
+**The intended intelligence flow is:**
+
+```text
+REGION
+   ↓
+LOCAL CLAIM
+   ↓
+LOCAL ORGANIZATION
+   ↓
+LOCAL SCAM PATTERN
+   ↓
+AVAILABLE EVIDENCE
+   ↓
+TRUST / CONTRADICTION
+```
+
+The goal is **context-aware verification**, not assuming that every regional claim is fraudulent.
+
+---
+
+**🎭 Deepfake + Identity Verification**
+
+Deepfake detection is treated as a **supporting trust signal**, not the entire solution.
+
+```text
+Person appears to be an organization employee
+                ↓
+        Media authenticity
+                ↓
+        Identity verification
+                ↓
+          Role verification
+                ↓
+       Request authorization
+```
+
+**Possible Result**
+
+```text
+Identity:               VERIFIED
+Media Authenticity:     UNCERTAIN
+Payment Authorization:  CONTRADICTED
+```
+
+This is more useful than simply saying:
+
+> **"Deepfake detected."**
+
+---
+
+**🧩 System Architecture**
+
+```text
+                            CAPMeNot
+                               │
+                ┌──────────────┴──────────────┐
+                │                             │
+           INPUT LAYER                  EVIDENCE LAYER
+                │                             │
+        ┌───────┴───────┐              ┌──────┴──────┐
+        │               │              │             │
+       Text             QR            URL          Phone
+        │               │              │             │
+        └───────┬───────┘              └──────┬──────┘
+                │                             │
+                └──────────────┬──────────────┘
+                               ↓
+                       CLAIM EXTRACTION
+                               ↓
+                       EVIDENCE EXTRACTION
+                               ↓
+                     TRUST & VERIFICATION
+                               ↓
+              ┌────────────────┼────────────────┐
+              ↓                ↓                ↓
+          Identity          Authority         Payment
+         Verification       Verification      Verification
+              │                │                │
+              └────────────────┼────────────────┘
+                               ↓
+                      AUTHORIZATION ENGINE
+                               ↓
+                          RISK ENGINE
+                               ↓
+                     EXPLAINABLE RESULT
+```
+
+---
+
+**🔄 Current Processing Pipeline**
+
+The currently implemented claim/evidence pipeline is:
+
+```text
+Input
+  ↓
+Claim Extraction
+  ↓
+Structured Claims
+  ↓
+Evidence Extraction
+  ↓
+Structured Evidence
+  ↓
+Trust / Authorization Layer
+```
+
+**Example Input**
+
+```text
+Main SBI se bol raha hoon.
+Your account will be blocked.
+Pay ₹2500 immediately.
+```
+
+**Extracted Claims**
+
+```json
+{
+  "claims": [
+    {
+      "category": "identity",
+      "value": "Main SBI se bol raha hoon",
+      "evidence": "Main SBI se bol raha hoon",
+      "status": "unverified"
+    },
+    {
+      "category": "organization",
+      "value": "SBI",
+      "evidence": "SBI",
+      "status": "unverified"
+    },
+    {
+      "category": "payment",
+      "value": "₹2500",
+      "evidence": "₹2500",
+      "status": "unverified"
+    },
+    {
+      "category": "intent",
+      "value": "Payment requested",
+      "evidence": "Pay ₹",
+      "status": "unverified"
+    },
+    {
+      "category": "urgency",
+      "value": "Immediate action required",
+      "evidence": "immediately",
+      "status": "unverified"
+    }
+  ]
+}
+```
+
+**Extracted Evidence**
+
+```json
+{
+  "evidence": [
+    {
+      "type": "url",
+      "value": "https://example.com",
+      "source": "message"
+    },
+    {
+      "type": "phone",
+      "value": "9876543210",
+      "source": "message"
+    },
+    {
+      "type": "organization_claim",
+      "value": "SBI",
+      "source": "claim"
+    },
+    {
+      "type": "payment",
+      "value": "₹2500",
+      "source": "claim"
+    }
+  ]
+}
+```
+
+> **The extraction layer does not label the message as a scam. Verification and final risk reasoning belong to the subsequent trust layer.**
+
+---
+
+**📁 Project Structure**
+
+```text
+CAPMeNot/
+│
+├── client/
+│   └── src/
+│       ├── components/
+│       ├── contexts/
+│       ├── data/
+│       ├── hooks/
+│       │
+│       ├── lib/
+│       │   ├── claims/
+│       │   │   ├── claimExtractor.js
+│       │   │   ├── claimExtractor.test.js
+│       │   │   ├── evidence.js
+│       │   │   └── evidence.test.js
+│       │
+│       │   ├── rules/
+│       │   │   ├── engine.js
+│       │   │   └── engine.test.js
+│       │
+│       │   └── scoring/
+│       │       └── index.js
+│       │
+│       ├── pages/
+│       ├── App.jsx
+│       └── main.jsx
+│
 └── README.md
+```
 
 ---
 
-## 🔒 Privacy Principles
+**🛠️ Technology Stack**
 
-CAPMeNot is designed with privacy-first principles:
-
-* Local analysis whenever possible
-* Minimal data transmission
-* No collection of passwords or payment credentials
-* Transparent AI usage
-* User-controlled scanning options
-
----
-
-## ⚠️ Limitations
-CAPMeNot is a warning system, not a guarantee of safety.
-The platform may:
-
-* Miss previously unseen scam techniques
-* Produce false positives
-* Misclassify ambiguous content
-
-Users should always independently verify payment requests, domains, and official communications.
+| **Layer**              | **Technology / Approach**                                |
+| ---------------------- | -------------------------------------------------------- |
+| **Frontend**           | React, JavaScript, Vite, CSS                             |
+| **Claim Intelligence** | Claim extraction, NLP-based pattern analysis             |
+| **Evidence Layer**     | URL, phone, payment and claim-linked evidence extraction |
+| **Computer Vision**    | OpenCV.js, QR detection and decoding                     |
+| **Trust Layer**        | Identity, authority and authorization verification       |
+| **Decision Layer**     | Evidence-based trust and risk reasoning                  |
 
 ---
 
-## 🗺️ Roadmap:
+**⚙️ Running the Project**
 
-### Current Prototype
+**1. Clone the repository**
 
-* Chrome Extension Skeleton
-* Dark Pattern Detection
-* Scam Signal Analysis
-* Message Scanner
-* Risk Dashboard
-* Demo Environment
+```bash
+git clone https://github.com/OK007-code/PROJECT-TrustLens.git
+```
 
-### Future Releases
+**2. Move into the project**
 
-* Guardian Mode
-* Community Threat Feed
-* Firefox & Edge Support
-* Mobile Integration
-* WhatsApp & SMS Analysis
-* Multilingual Scam Detection
-* Voice Scam Detection
-* Scam Reporting Dashboard
+```bash
+cd PROJECT-TrustLens
+cd client
+```
 
----
+**3. Install dependencies**
 
-## 💼 Business Potential
+```bash
+npm install
+```
 
-Potential expansion opportunities include:
+**4. Start the development server**
 
-* Freemium Browser Protection
-* Family Safety Plans
-* School & Organization Dashboards
-* Threat Intelligence APIs
-* Banking & Fintech Partnerships
-* Senior Citizen Digital Safety Programs
+```bash
+npm run dev
+```
+
+> **Note:** The GitHub repository may retain its existing repository name even though the project itself is now branded as CAPMeNot.
 
 ---
 
-## 🤝 Contributing
+**🧪 Testing**
 
-Contributions are welcome.
+**Claim Extraction**
 
-1. Fork the repository
-2. Create a feature branch
-3. Add tests
-4. Document new detection rules
-5. Open a pull request
+Navigate to:
+
+```bash
+cd client/src/lib/claims
+```
+
+Run:
+
+```bash
+node claimExtractor.test.js
+```
+
+**Evidence Extraction**
+
+Run:
+
+```bash
+node evidence.test.js
+```
+
+These tests verify that representative inputs are converted into structured **claims** and **evidence**.
 
 ---
 
-## 📬 Contact
+**👥 Team Architecture**
 
-For collaboration, responsible disclosure, or project discussions, please open an issue in this repository.
+CAPMeNot is divided into independent modules to keep development modular and simplify integration.
+
+**👤 Member 1 — QR + Computer Vision**
+
+**Responsibilities:**
+
+* QR detection
+* QR decoding
+* Payment data extraction
+
+**Primary files:**
+
+```text
+client/src/components/QRScanner.jsx
+client/src/lib/qr/qrDecoder.js
+```
 
 ---
 
-### 🛡️ CAPMeNot
+**👤 Member 2 — Claim + Evidence Extraction**
 
-**Making the internet safer, one decision at a time.**
+**Responsibilities:**
+
+* Identity claims
+* Organization claims
+* Role claims
+* Payment claims
+* Intent claims
+* Authority claims
+* Urgency claims
+* Evidence extraction
+
+**Primary files:**
+
+```text
+client/src/lib/claims/claimExtractor.js
+client/src/lib/claims/evidence.js
+```
+
+> **Member 2 does not calculate the final risk score.**
+
+---
+
+**👤 Member 3 — Trust + Authorization**
+
+**Responsibilities:**
+
+* Identity verification
+* Authority verification
+* Payment verification
+* Authorization
+* Final risk reasoning
+
+**Planned modules:**
+
+```text
+client/src/lib/trust/
+├── identityVerifier.js
+├── authorizationVerifier.js
+├── paymentVerifier.js
+└── riskEngine.js
+```
+
+---
+
+**👤 Member 4 — UI + Explainability**
+
+**Responsibilities:**
+
+* Trust result visualization
+* Evidence graph
+* Risk explanation
+* User-facing recommendations
+* Integration with the existing scanner/result flow
+
+**Potential components:**
+
+```text
+TrustResult.jsx
+EvidenceGraph.jsx
+RiskBreakdown.jsx
+```
+
+---
+
+**🔗 Module Contracts**
+
+**QR → Trust Layer**
+
+```json
+{
+  "source": "qr",
+  "type": "upi",
+  "rawData": "...",
+  "recipient": "...",
+  "amount": 2500
+}
+```
+
+**Claim/Evidence → Trust Layer**
+
+```json
+{
+  "claims": [
+    {
+      "category": "identity",
+      "value": "SBI representative"
+    },
+    {
+      "category": "payment",
+      "value": "₹2500"
+    }
+  ],
+  "evidence": [
+    {
+      "type": "url",
+      "value": "https://example.com",
+      "source": "message"
+    }
+  ]
+}
+```
+
+**Trust Layer → UI**
+
+```json
+{
+  "overallRisk": "HIGH",
+  "identity": {
+    "status": "verified"
+  },
+  "organization": {
+    "status": "verified"
+  },
+  "role": {
+    "status": "unverified"
+  },
+  "authorization": {
+    "status": "contradicted"
+  },
+  "payment": {
+    "status": "unverified"
+  },
+  "reasons": [
+    "Payment recipient could not be verified",
+    "Request authorization is inconsistent"
+  ],
+  "recommendations": [
+    "Do not make the payment",
+    "Verify through the official organization"
+  ]
+}
+```
+
+---
+
+**🔐 Core Design Principle**
+
+> **A Claim Is Not Proof.**
+
+A message saying:
+
+```text
+"I am from SBI"
+```
+
+is only a **claim**.
+
+CAPMeNot attempts to determine:
+
+```text
+Who?
+ ↓
+Which organization?
+ ↓
+Which role?
+ ↓
+What authority?
+ ↓
+What evidence?
+ ↓
+What action?
+ ↓
+Is that action authorized?
+```
+
+This creates a clear separation between:
+
+**Identity → Authority → Authorization**
+
+and makes CAPMeNot a **digital trust verification system**, rather than only a conventional scam detector.
+
+---
+
+**🚧 Roadmap**
+
+**Phase 1 — Core Trust Layer**
+
+* [x] Claim extraction
+* [x] Evidence extraction
+* [x] Existing rule-based analysis
+* [x] QR data extraction
+* [ ] Identity verification
+* [ ] Authority verification
+* [ ] Authorization verification
+* [ ] Unified trust verdict
+
+**Phase 2 — Advanced Intelligence**
+
+* [ ] Evidence Graph
+* [ ] Provenance tracking
+* [ ] Regional Trust Intelligence
+* [ ] Deepfake + identity verification
+* [ ] Personal trust baseline
+* [ ] Community threat intelligence
+
+**Phase 3 — Accessibility & Scale**
+
+* [ ] Regional language support
+* [ ] Voice-based warnings
+* [ ] Guardian Mode
+* [ ] Privacy-preserving threat intelligence
+* [ ] Expanded payment verification
+
+---
+
+**🎯 Vision**
+
+CAPMeNot aims to move digital safety from:
+
+> **"Does this look suspicious?"**
+
+to:
+
+> **"Can this interaction actually be trusted?"**
+
+By combining **claims, evidence, identity, authority, provenance, and authorization**, CAPMeNot aims to make digital interactions safer and trust decisions more explainable.
+
+---
+
+<div align="center">
+
+**🛡️ CAPMeNot**
+
+**Verify the claim. Verify the authority. Verify the action.**
+
+</div>
