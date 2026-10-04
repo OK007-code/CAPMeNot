@@ -13,13 +13,13 @@ const steps = [
     icon: Download,
     title: "Load it in Chrome",
     body: "Open chrome://extensions, enable Developer mode, choose Load unpacked, and select the generated dist folder.",
-    code: "PROJECT-TrustLens\\extension\\dist",
+    code: "extension\\dist",
   },
   {
     number: "03",
     icon: RefreshCw,
     title: "Reload your website",
-    body: "Pin TrustLens from the toolbar, open a normal HTTP or HTTPS site, and refresh once after installing the extension.",
+    body: "Pin CAPMeNot from the toolbar, open a normal HTTP or HTTPS site, and refresh once after installing the extension.",
     code: "Ctrl + Shift + R",
   },
 ];
@@ -29,7 +29,7 @@ export default function Extension() {
     <div className="page extension-page container">
       <div className="page-intro extension-intro">
         <div className="eyebrow"><span className="eyebrow-dot" /> BROWSER SHIELD</div>
-        <h1>TrustLens, right where the risk appears.</h1>
+        <h1>CAPMeNot, right where the risk appears.</h1>
         <p>Install the separate Chrome extension to scan live websites. It reads the current URL and visible page text locally, then shows a badge with the verdict, two scores, and highlighted warning signals.</p>
       </div>
 
@@ -45,7 +45,7 @@ export default function Extension() {
           </div>
         </div>
         <div className="extension-preview">
-          <div className="extension-preview-top"><span>Trust<span>Lens</span></span><small>LIVE</small></div>
+          <div className="extension-preview-top"><span>CAP<span>MeNot</span></span><small>LIVE</small></div>
           <div className="extension-preview-verdict">Likely Scam <strong>82</strong></div>
           <div className="extension-preview-scores"><span>Manipulation <b>64</b></span><span>Fraud risk <b>82</b></span></div>
           <div className="extension-preview-line amber">Urgency pressure</div>

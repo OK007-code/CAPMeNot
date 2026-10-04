@@ -25,7 +25,7 @@ function App() {
 
   const loadTab = () => {
     if (!globalThis.chrome?.tabs?.query || !globalThis.chrome?.storage?.local) {
-      setStatus("Open TrustLens from the browser toolbar after loading it as an extension.");
+      setStatus("Open CAPMeNot from the browser toolbar after loading it as an extension.");
       return;
     }
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -50,7 +50,7 @@ function App() {
     }
     setBusy(true);
     setStatus("Reading visible page text...");
-    chrome.tabs.sendMessage(tab.id, { type: "TRUSTLENS_GET_PAGE_TEXT" }, (response) => {
+    chrome.tabs.sendMessage(tab.id, { type: "CAPMENOT_GET_PAGE_TEXT" }, (response) => {
       if (chrome.runtime.lastError || !response?.ok) {
         setBusy(false);
         setStatus(response?.error || "Reload the page after installing the extension.");
@@ -69,7 +69,7 @@ function App() {
     const key = `enabled:${new URL(tab.url).origin}`;
     setEnabled(nextEnabled);
     chrome.storage.local.set({ [key]: nextEnabled });
-    chrome.tabs.sendMessage(tab.id, { type: "TRUSTLENS_SET_ENABLED", enabled: nextEnabled }, () => {
+    chrome.tabs.sendMessage(tab.id, { type: "CAPMENOT_SET_ENABLED", enabled: nextEnabled }, () => {
       setStatus(nextEnabled ? "Shield enabled for this site." : "Shield paused for this site.");
     });
   };
@@ -86,7 +86,7 @@ function App() {
   return (
     <main className="app">
       <header className="header">
-        <div className="brand"><span className="brand-mark">◉</span>Trust<span style={{ color: "#0d9a91" }}>Lens</span></div>
+        <div className="brand"><span className="brand-mark">◉</span>CAP<span style={{ color: "#0d9a91" }}>MeNot</span></div>
         <button className={`shield-toggle ${enabled ? "on" : "off"}`} onClick={toggleShield} disabled={!tab?.id || restrictedUrl(tab?.url)}><span /> Shield {enabled ? "ON" : "OFF"}</button>
       </header>
       <div className="site-line" title={tab?.url}>{host}</div>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { analyzeInput, highlightEvidence } from "./engine";
-describe("TrustLens rule engine", () => {
+describe("CAPMeNot rule engine", () => {
     it("flags a lookalike bank URL and OTP request", () => {
         const result = analyzeInput("URGENT: SBI KYC expired. Share OTP at https://sbi-kyc-update.xyz", "message");
         expect(result.verdict).toBe("scam");

@@ -8,7 +8,7 @@ import { Link } from "wouter";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 import { analyzeInput, highlightEvidence } from "@/lib/rules/engine";
-import { SAMPLE_INPUTS } from "@/data/trustlensData";
+import { SAMPLE_INPUTS } from "@/data/capmenotData";
 
 const verdictMeta = {
     safe: { label: "Looks safe", color: "safe", icon: "✓" },
@@ -43,7 +43,7 @@ function ResultPanel({ result, onReset }) {
     const [showAll, setShowAll] = useState(false);
     const meta = verdictMeta[result.verdict];
     const shownReasons = showAll ? result.reasons : result.reasons.slice(0, 4);
-    const shareText = `TrustLens flagged this as ${meta.label}. Fraud risk ${result.fraudScore}/100. Please pause and verify before clicking or paying.`;
+    const shareText = `CAPMeNot flagged this as ${meta.label}. Fraud risk ${result.fraudScore}/100. Please pause and verify before clicking or paying.`;
     const waLink = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
 
     return _jsxs("section", {
@@ -61,7 +61,7 @@ function ResultPanel({ result, onReset }) {
                                     result.source === "hybrid" ? t.hybrid : t.rules
                                 ]
                             }),
-                            _jsx("h2", { children: "Here’s what TrustLens saw." })
+                            _jsx("h2", { children: "Here’s what CAPMeNot saw." })
                         ]
                     }),
                     _jsxs("button", {
@@ -420,7 +420,7 @@ export default function Scanner() {
         setResult(null);
     };
 
-    // QR decoded → parse → send to TrustLens
+    // QR decoded → parse → send to CAPMeNot
     const handleQRDecoded = (decodedText) => {
         const value = String(decodedText || "").trim();
 
@@ -495,7 +495,7 @@ export default function Scanner() {
                     }),
                     _jsx("p", {
                         children:
-                            "Paste a message, link, or page text. TrustLens checks it instantly, then adds plain-language context so you know what to do next."
+                            "Paste a message, link, or page text. CAPMeNot checks it instantly, then adds plain-language context so you know what to do next."
                     })
                 ]
             }),
@@ -710,7 +710,7 @@ export default function Scanner() {
                                         _jsx("strong", {
                                             children: "Remember:"
                                         }),
-                                        " TrustLens gives risk guidance, not legal or financial advice. When in doubt, ask someone you trust before acting."
+                                        " CAPMeNot gives risk guidance, not legal or financial advice. When in doubt, ask someone you trust before acting."
                                     ]
                                 })
                             ]

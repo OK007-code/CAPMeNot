@@ -1,14 +1,14 @@
 import { analyzeForExtension } from "./localAnalysis.js";
 
-const PANEL_ID = "trustlens-live-panel";
-const STYLE_ID = "trustlens-live-style";
-const HIGHLIGHT_CLASS = "trustlens-highlight";
+const PANEL_ID = "capmenot-live-panel";
+const STYLE_ID = "capmenot-live-style";
+const HIGHLIGHT_CLASS = "capmenot-highlight";
 const ALLOWED_WEBSITE_ORIGINS = new Set([
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:3002",
   "http://localhost:3003",
-  "https://trustlens.app",
+  "https://capmenot.app",
 ]);
 
 let enabled = true;
@@ -46,7 +46,7 @@ function addStyles() {
     #${PANEL_ID} .tl-body{padding:13px}#${PANEL_ID} .tl-row{display:flex;align-items:center;justify-content:space-between;gap:10px}#${PANEL_ID} .tl-label{color:#78909b;font-size:9px;letter-spacing:.1em}#${PANEL_ID} .tl-verdict{margin-top:3px;font-size:17px;font-weight:800}
     #${PANEL_ID} .tl-scores{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}#${PANEL_ID} .tl-score{padding:9px;border-radius:9px;background:#f1f7f7}#${PANEL_ID} .tl-score.amber{border-left:4px solid #f1a735}#${PANEL_ID} .tl-score.red{border-left:4px solid #df5a50}#${PANEL_ID} .tl-score b{display:block;margin-top:3px;font-size:20px}#${PANEL_ID} .tl-score small{color:#607b88;font-size:9px}
     #${PANEL_ID} .tl-note{margin:11px 0 0;color:#5b7381;font-size:11px;line-height:1.45}#${PANEL_ID} .tl-reasons{display:grid;gap:5px;margin:11px 0 0;padding:0;list-style:none}#${PANEL_ID} li{padding:7px 8px;border-radius:7px;color:#4f6876;background:#f1f7f7;font-size:10px;line-height:1.35}#${PANEL_ID} li.amber{border-left:3px solid #f1a735}#${PANEL_ID} li.red{border-left:3px solid #df5a50}#${PANEL_ID} li b{color:#102b42}#${PANEL_ID} .tl-foot{margin-top:10px;color:#94a6ad;font-size:9px}
-    .${HIGHLIGHT_CLASS}{outline:2px solid #f1a735!important;outline-offset:2px!important;background-color:rgba(241,167,53,.12)!important}.${HIGHLIGHT_CLASS}[data-trustlens-risk="scam"]{outline-color:#df5a50!important;background-color:rgba(223,90,80,.12)!important}
+    .${HIGHLIGHT_CLASS}{outline:2px solid #f1a735!important;outline-offset:2px!important;background-color:rgba(241,167,53,.12)!important}.${HIGHLIGHT_CLASS}[data-capmenot-risk="scam"]{outline-color:#df5a50!important;background-color:rgba(223,90,80,.12)!important}
   `;
   document.documentElement.appendChild(style);
 }
@@ -61,7 +61,7 @@ function getVerdict(result) {
 function clearHighlights() {
   document.querySelectorAll(`.${HIGHLIGHT_CLASS}`).forEach((element) => {
     element.classList.remove(HIGHLIGHT_CLASS);
-    element.removeAttribute("data-trustlens-risk");
+    element.removeAttribute("data-capmenot-risk");
   });
 }
 
@@ -78,7 +78,7 @@ function highlightFindings(result) {
     const target = elements.find((element) => String(element.innerText || element.value || "").toLocaleLowerCase().includes(evidence));
     if (target) {
       target.classList.add(HIGHLIGHT_CLASS);
-      target.dataset.trustlensRisk = finding.category === "scam" ? "scam" : "manipulation";
+      target.dataset.capmenotRisk = finding.category === "scam" ? "scam" : "manipulation";
     }
   }
 }
@@ -95,7 +95,7 @@ function render(result) {
   }
   const [label] = getVerdict(result);
   const reasons = result.reasons.slice(0, 4).map((item) => `<li class="${item.category === "scam" ? "red" : "amber"}"><b>${escapeHtml(item.tactic)}</b><br>${escapeHtml(item.explanation_hi || item.explanation)}</li>`).join("");
-  panel.innerHTML = `<div class="tl-card"><div class="tl-head"><div class="tl-brand">Trust<span>Lens</span><small class="tl-live">LIVE</small></div><button class="tl-close" aria-label="Turn off TrustLens on this site">×</button></div><div class="tl-body"><div class="tl-row"><div><div class="tl-label">PAGE VERDICT</div><div class="tl-verdict">${label}</div></div><button class="tl-enable" type="button">Shield ON</button></div><div class="tl-scores"><div class="tl-score amber"><small>MANIPULATION SCORE</small><b>${result.manipulationScore}/100</b></div><div class="tl-score red"><small>FRAUD RISK SCORE</small><b>${result.fraudScore}/100</b></div></div><p class="tl-note">${result.reasons.length ? `Detected ${result.reasons.length} local signal${result.reasons.length === 1 ? "" : "s"}. Highlighted elements are marked amber or red.` : "No strong scam or pressure signals found on this page."}</p>${reasons ? `<ul class="tl-reasons">${reasons}</ul>` : ""}<div class="tl-foot">Local scan · ${escapeHtml(new URL(window.location.href).hostname)}</div></div></div>`;
+  panel.innerHTML = `<div class="tl-card"><div class="tl-head"><div class="tl-brand">CAP<span>MeNot</span><small class="tl-live">LIVE</small></div><button class="tl-close" aria-label="Turn off CAPMeNot on this site">×</button></div><div class="tl-body"><div class="tl-row"><div><div class="tl-label">PAGE VERDICT</div><div class="tl-verdict">${label}</div></div><button class="tl-enable" type="button">Shield ON</button></div><div class="tl-scores"><div class="tl-score amber"><small>MANIPULATION SCORE</small><b>${result.manipulationScore}/100</b></div><div class="tl-score red"><small>FRAUD RISK SCORE</small><b>${result.fraudScore}/100</b></div></div><p class="tl-note">${result.reasons.length ? `Detected ${result.reasons.length} local signal${result.reasons.length === 1 ? "" : "s"}. Highlighted elements are marked amber or red.` : "No strong scam or pressure signals found on this page."}</p>${reasons ? `<ul class="tl-reasons">${reasons}</ul>` : ""}<div class="tl-foot">Local scan · ${escapeHtml(new URL(window.location.href).hostname)}</div></div></div>`;
   panel.querySelector(".tl-close").addEventListener("click", () => setEnabled(false));
   panel.querySelector(".tl-enable").addEventListener("click", () => setEnabled(false));
   highlightFindings(result);
@@ -131,17 +131,17 @@ function scheduleScan() {
 function handleWebsiteMessage(event) {
   if (event.source !== window || !ALLOWED_WEBSITE_ORIGINS.has(event.origin)) return;
   const message = event.data;
-  if (!message || message.source !== "trustlens-website") return;
-  if (message.type === "TRUSTLENS_SCAN") {
+  if (!message || message.source !== "capmenot-website") return;
+  if (message.type === "CAPMENOT_SCAN") {
     scanPage();
-    window.postMessage({ source: "trustlens-extension", type: "TRUSTLENS_RESULT", result: lastResult }, event.origin);
-  } else if (message.type === "TRUSTLENS_SET_ENABLED" && typeof message.enabled === "boolean") {
+    window.postMessage({ source: "capmenot-extension", type: "CAPMENOT_RESULT", result: lastResult }, event.origin);
+  } else if (message.type === "CAPMENOT_SET_ENABLED" && typeof message.enabled === "boolean") {
     setEnabled(message.enabled);
   }
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message?.type !== "TRUSTLENS_GET_PAGE_TEXT") return undefined;
+  if (message?.type !== "CAPMENOT_GET_PAGE_TEXT") return undefined;
   if (isRestrictedPage()) {
     sendResponse({ ok: false, restricted: true, error: "This browser page cannot be scanned by an extension." });
     return false;

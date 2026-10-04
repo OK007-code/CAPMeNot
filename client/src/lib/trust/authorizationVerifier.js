@@ -1,4 +1,4 @@
-// Authorization verification for TrustLens
+// Authorization verification for CAPMeNot
 // Member 3: Trust + Authorization + Risk Engine
 
 export function verifyAuthorization(input = {}) {

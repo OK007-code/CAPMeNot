@@ -1,4 +1,4 @@
-// Identity verification for TrustLens
+// Identity verification for CAPMeNot
 // Member 3: Trust + Authorization + Risk Engine
 
 export function verifyIdentity(input = {}) {

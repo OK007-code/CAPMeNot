@@ -48,7 +48,7 @@ async function startServer() {
     }
     const preferredPort = parseInt(process.env.PORT || "3000");
     if (process.env.NODE_ENV === "development" && !(await isPortAvailable(preferredPort))) {
-        console.error(`Port ${preferredPort} is already in use. Stop the existing TrustLens dev server before running npm run dev again.`);
+        console.error(`Port ${preferredPort} is already in use. Stop the existing CAPMeNot dev server before running npm run dev again.`);
         return;
     }
     const port = await findAvailablePort(preferredPort);

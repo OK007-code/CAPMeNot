@@ -1,11 +1,11 @@
-#🛡️ TrustLens
+#🛡️ CAPMeNot
 
-Deployed link on Render- https://trustlens-phs9.onrender.com/
+Deployed link on Render- https://capmenot-phs9.onrender.com/
 > Detect manipulation before the user clicks pay.
 
-TrustLens is a browser-based safety assistant that helps users identify online manipulation, dark patterns, phishing attempts, scam websites, suspicious messages, and risky payment requests before they result in financial loss or privacy compromise.
+CAPMeNot is a browser-based safety assistant that helps users identify online manipulation, dark patterns, phishing attempts, scam websites, suspicious messages, and risky payment requests before they result in financial loss or privacy compromise.
 
-Unlike traditional security tools that focus primarily on malware and malicious URLs, TrustLens focuses on the **human manipulation layer** of cybercrime. It detects deceptive design techniques, fraudulent content, and scam indicators in real time and explains risks in clear, understandable language.
+Unlike traditional security tools that focus primarily on malware and malicious URLs, CAPMeNot focuses on the **human manipulation layer** of cybercrime. It detects deceptive design techniques, fraudulent content, and scam indicators in real time and explains risks in clear, understandable language.
 
 ---
 
@@ -22,7 +22,7 @@ Websites and messages often create:
 * Payment scams
 * Credential theft attempts
 
-TrustLens identifies these signals and warns users before they make risky decisions.
+CAPMeNot identifies these signals and warns users before they make risky decisions.
 The platform combines:
 
 * Dark Pattern Detection
@@ -54,7 +54,7 @@ Most existing tools focus on malware and malicious links, leaving users vulnerab
 ---
 
 ## 💡 Proposed Solution
-TrustLens is a Chrome Extension that evaluates web pages and messages in real time and provides users with clear, actionable explanations.
+CAPMeNot is a Chrome Extension that evaluates web pages and messages in real time and provides users with clear, actionable explanations.
 
 ### Risk Scores
 
@@ -143,7 +143,7 @@ Allows trusted family members to receive alerts when vulnerable users encounter 
 ---
 
 ## 🧠 Hybrid Detection Model
-TrustLens follows a hybrid architecture:
+CAPMeNot follows a hybrid architecture:
 
 1. Local rules handle obvious threats instantly.
 2. AI models analyze ambiguous content.
@@ -175,7 +175,7 @@ This provides:
 ## 📂 Project Structure
 
 text
-trustlens/
+capmenot/
 ├── extension/
 │   ├── manifest.json
 │   ├── background/
@@ -193,7 +193,7 @@ trustlens/
 
 ## 🔒 Privacy Principles
 
-TrustLens is designed with privacy-first principles:
+CAPMeNot is designed with privacy-first principles:
 
 * Local analysis whenever possible
 * Minimal data transmission
@@ -204,7 +204,7 @@ TrustLens is designed with privacy-first principles:
 ---
 
 ## ⚠️ Limitations
-TrustLens is a warning system, not a guarantee of safety.
+CAPMeNot is a warning system, not a guarantee of safety.
 The platform may:
 
 * Miss previously unseen scam techniques
@@ -270,6 +270,6 @@ For collaboration, responsible disclosure, or project discussions, please open a
 
 ---
 
-### 🛡️ TrustLens
+### 🛡️ CAPMeNot
 
 **Making the internet safer, one decision at a time.**

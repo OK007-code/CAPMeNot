@@ -23,4 +23,4 @@ await build({ ...shared, entryPoints: [path.join(root, "extension", "src", "popu
 await build({ ...shared, entryPoints: [path.join(root, "extension", "src", "content.js")], outfile: path.join(outDir, "content.js") });
 await build({ ...shared, entryPoints: [path.join(root, "extension", "src", "background.js")], outfile: path.join(outDir, "background.js") });
 for (const file of ["manifest.json", "popup.html", "popup.css"]) fs.copyFileSync(path.join(root, "extension", file), path.join(outDir, file));
-console.log(`TrustLens extension built at ${path.relative(root, outDir)}`);
+console.log(`CAPMeNot extension built at ${path.relative(root, outDir)}`);

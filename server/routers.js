@@ -43,7 +43,7 @@ async function addLlmNuance(ruleResult) {
         const response = await Promise.race([
             invokeLLM({
                 messages: [{ role: "system", content: system }, { role: "user", content: user }],
-                response_format: { type: "json_schema", json_schema: { name: "trustlens_analysis", strict: true, schema: { type: "object", properties: { manipulationScore: { type: "number" }, fraudScore: { type: "number" }, reasons: { type: "array", items: { type: "object", properties: { category: { type: "string" }, tactic: { type: "string" }, evidence: { type: "string" }, severity: { type: "string" }, explanation: { type: "string" }, explanation_hi: { type: "string" }, weight: { type: "number" } }, required: ["category", "tactic", "evidence", "severity", "explanation", "explanation_hi", "weight"], additionalProperties: false } }, advice: { type: "array", items: { type: "string" } } }, required: ["manipulationScore", "fraudScore", "reasons", "advice"], additionalProperties: false } } },
+                response_format: { type: "json_schema", json_schema: { name: "capmenot_analysis", strict: true, schema: { type: "object", properties: { manipulationScore: { type: "number" }, fraudScore: { type: "number" }, reasons: { type: "array", items: { type: "object", properties: { category: { type: "string" }, tactic: { type: "string" }, evidence: { type: "string" }, severity: { type: "string" }, explanation: { type: "string" }, explanation_hi: { type: "string" }, weight: { type: "number" } }, required: ["category", "tactic", "evidence", "severity", "explanation", "explanation_hi", "weight"], additionalProperties: false } }, advice: { type: "array", items: { type: "string" } } }, required: ["manipulationScore", "fraudScore", "reasons", "advice"], additionalProperties: false } } },
             }),
             new Promise((_, reject) => setTimeout(() => reject(new Error("LLM timeout")), 8000)),
         ]);
@@ -52,7 +52,7 @@ async function addLlmNuance(ruleResult) {
         return mergeLlmResult(ruleResult, parsed);
     }
     catch (error) {
-        console.warn("[TrustLens] LLM nuance unavailable; returning rule result", error instanceof Error ? error.message : error);
+        console.warn("[CAPMeNot] LLM nuance unavailable; returning rule result", error instanceof Error ? error.message : error);
         return ruleResult;
     }
 }

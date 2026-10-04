@@ -49,9 +49,9 @@ export const SAMPLE_INPUTS = [
     },
 ];
 export const COMMUNITY_SEED = [
-    { id: "seed-1", type: "Digital arrest", title: "Caller claimed to be from CBI and demanded a transfer", detail: "Reported by a TrustLens community member", severity: "scam", createdAt: "Today" },
-    { id: "seed-2", type: "Fake KYC", title: "Message asked for OTP on an SBI lookalike link", detail: "Reported by a TrustLens community member", severity: "scam", createdAt: "Yesterday" },
-    { id: "seed-3", type: "Job fraud", title: "Work-from-home offer required a registration fee", detail: "Reported by a TrustLens community member", severity: "deceptive", createdAt: "2 days ago" },
+    { id: "seed-1", type: "Digital arrest", title: "Caller claimed to be from CBI and demanded a transfer", detail: "Reported by a CAPMeNot community member", severity: "scam", createdAt: "Today" },
+    { id: "seed-2", type: "Fake KYC", title: "Message asked for OTP on an SBI lookalike link", detail: "Reported by a CAPMeNot community member", severity: "scam", createdAt: "Yesterday" },
+    { id: "seed-3", type: "Job fraud", title: "Work-from-home offer required a registration fee", detail: "Reported by a CAPMeNot community member", severity: "deceptive", createdAt: "2 days ago" },
 ];
 export const DEMO_SITES = [
     {

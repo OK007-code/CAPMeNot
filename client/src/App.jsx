@@ -26,9 +26,9 @@ function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <Link href="/" className="brand" aria-label="TrustLens home">
+        <Link href="/" className="brand" aria-label="CAPMeNot home">
           <span className="brand-mark"><Eye size={18} strokeWidth={2.5} /></span>
-          <span>Trust<span>Lens</span></span>
+          <span>CAP<span>MeNot</span></span>
         </Link>
         <nav className="main-nav" aria-label="Main navigation">
           {links.map(({ href, label, icon: Icon }) => (
@@ -63,7 +63,7 @@ function Layout() {
         </Switch>
       </main>
       <footer className="site-footer">
-        <div><strong>TrustLens</strong><span>Tech for a Better Tomorrow</span></div>
+        <div><strong>CAPMeNot</strong><span>Tech for a Better Tomorrow</span></div>
         <div className="footer-note">{t.disclaimer} <span className="footer-dot">·</span> <span>{t.privacy}</span></div>
         <Link href="/scan" className="footer-cta">{t.scan} <ArrowRight size={15} /></Link>
       </footer>

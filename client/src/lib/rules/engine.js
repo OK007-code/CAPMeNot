@@ -1,4 +1,4 @@
-import { BRANDS, KEYWORDS, SUSPICIOUS_TLDS, URL_SHORTENERS } from "../../data/trustlensData.js";
+import { BRANDS, KEYWORDS, SUSPICIOUS_TLDS, URL_SHORTENERS } from "../../data/capmenotData.js";
 const clean = (value) => value.replace(/\s+/g, " ").trim();
 const lower = (value) => value.toLocaleLowerCase("en-IN");
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

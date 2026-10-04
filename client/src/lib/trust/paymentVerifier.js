@@ -1,4 +1,4 @@
-// Payment verification for TrustLens
+// Payment verification for CAPMeNot
 // Member 3: Trust + Authorization + Risk Engine
 
 export function verifyPayment(input = {}) {

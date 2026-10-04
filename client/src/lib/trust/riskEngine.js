@@ -1,4 +1,4 @@
-// TrustLens Risk Engine
+// CAPMeNot Risk Engine
 // Member 3: Trust + Authorization + Risk Engine
 
 import { verifyIdentity } from "./identityVerifier.js";

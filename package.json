@@ -1,5 +1,5 @@
 {
-  "name": "trustlens",
+  "name": "capmenot",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "test": "vitest run",
     "db:push": "drizzle-kit generate && drizzle-kit migrate",
     "extension:build": "node scripts/build-extension.js",
-    "extension:zip": "pnpm extension:build && cd extension/dist && zip -qr ../trustlens-extension.zip ."
+    "extension:zip": "pnpm extension:build && cd extension/dist && zip -qr ../capmenot-extension.zip ."
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.693.0",

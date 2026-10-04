@@ -1,6 +1,6 @@
-# TrustLens Chrome Extension
+# CAPMeNot Chrome Extension
 
-TrustLens is a local-only Manifest V3 extension. It scans the active HTTP(S) tab URL and visible text with the existing TrustLens rule engine. No external API, LLM, analytics request, or page-text upload is used.
+CAPMeNot is a local-only Manifest V3 extension. It scans the active HTTP(S) tab URL and visible text with the existing CAPMeNot rule engine. No external API, LLM, analytics request, or page-text upload is used.
 
 ## Build and install
 
@@ -18,17 +18,17 @@ Then in Chrome or Edge:
 4. Select this generated folder:
 
 ```text
-PROJECT-TrustLens\extension\dist
+extension\dist
 ```
 
-5. Pin TrustLens in the toolbar.
+5. Pin CAPMeNot in the toolbar.
 6. Reload the website you want to scan.
 
-After a normal HTTP(S) page loads, the TrustLens badge appears in the lower-right corner. The popup provides Scan, Rescan, Shield ON/OFF, both scores, verdict, and detected reasons.
+After a normal HTTP(S) page loads, the CAPMeNot badge appears in the lower-right corner. The popup provides Scan, Rescan, Shield ON/OFF, both scores, verdict, and detected reasons.
 
 ## What it detects
 
-The local TrustLens rules cover fake countdowns, scarcity claims, hidden fees, confirmshaming, lookalike domains, suspicious URL structure, fake KYC/account-blocked messages, job and registration-fee scams, and requests involving UPI, OTP, PIN, CVV, Aadhaar, PAN, or passwords.
+The local CAPMeNot rules cover fake countdowns, scarcity claims, hidden fees, confirmshaming, lookalike domains, suspicious URL structure, fake KYC/account-blocked messages, job and registration-fee scams, and requests involving UPI, OTP, PIN, CVV, Aadhaar, PAN, or passwords.
 
 Manipulation signals are highlighted amber. Scam-risk signals are highlighted red. The badge shows:
 
@@ -49,22 +49,22 @@ Turning Shield OFF removes the badge and highlights for the current site. The se
 
 ## Website message bridge
 
-The content script accepts website requests only when the message comes from the same window, uses an explicitly allowlisted origin, and includes the expected source marker. Allowed origins are defined in `src/content.js`; add your real deployed TrustLens origin there before building if needed.
+The content script accepts website requests only when the message comes from the same window, uses an explicitly allowlisted origin, and includes the expected source marker. Allowed origins are defined in `src/content.js`; add your real deployed CAPMeNot origin there before building if needed.
 
 ```js
 window.postMessage({
-  source: "trustlens-website",
-  type: "TRUSTLENS_SCAN",
+  source: "capmenot-website",
+  type: "CAPMENOT_SCAN",
 }, window.location.origin);
 
 window.postMessage({
-  source: "trustlens-website",
-  type: "TRUSTLENS_SET_ENABLED",
+  source: "capmenot-website",
+  type: "CAPMENOT_SET_ENABLED",
   enabled: false,
 }, window.location.origin);
 ```
 
-The bridge never accepts `*`, arbitrary origins, or messages without `source: "trustlens-website"`. Random websites cannot use it to disable the extension.
+The bridge never accepts `*`, arbitrary origins, or messages without `source: "capmenot-website"`. Random websites cannot use it to disable the extension.
 
 ## Restricted pages
 
@@ -74,7 +74,7 @@ Chrome does not allow content scripts on `chrome://` pages, New Tab, PDF viewer 
 
 - [ ] `pnpm extension:build` completes.
 - [ ] `extension/dist` loads from `chrome://extensions` without manifest errors.
-- [ ] A real HTTP(S) website shows the TrustLens badge after reload.
+- [ ] A real HTTP(S) website shows the CAPMeNot badge after reload.
 - [ ] The badge shows two separate scores and one of the four requested verdicts.
 - [ ] Fake countdown/scarcity/hidden-fee/confirmshaming text is highlighted amber when visible.
 - [ ] KYC/account-blocked, job-fee, UPI, OTP, PIN, CVV, Aadhaar, PAN, and lookalike-domain evidence is highlighted red when matching text exists.
