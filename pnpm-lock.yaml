@@ -106,6 +106,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.90.2
         version: 5.90.2(react@19.2.1)
+      '@techstark/opencv-js':
+        specifier: 5.0.0-release.1
+        version: 5.0.0-release.1
       '@trpc/client':
         specifier: ^11.6.0
         version: 11.6.0(@trpc/server@11.6.0(typescript@5.9.3))(typescript@5.9.3)
@@ -134,7 +137,7 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       dotenv:
-        specifier: ^17.2.2
+        specifier: ^17.2.3
         version: 17.2.3
       drizzle-orm:
         specifier: ^0.44.5
@@ -2116,6 +2119,9 @@ packages:
     resolution: {integrity: sha512-CLABiR+h5PYfOWr/z+vWFt5VsOA2ekQeRQBFSKlcoW6Ndx/f8rfyVmq4LbgOM4GG2qtxAxjLYLOpCNTYm4uKzw==}
     peerDependencies:
       react: ^18 || ^19
+
+  '@techstark/opencv-js@5.0.0-release.1':
+    resolution: {integrity: sha512-PIm+eB0MFtieXoNC2GRao0dv/02sehG+Nv2nSW5D6pQm6J/4WqvDHm0RyoqOmGYQm67jdGiaOdIeTShCY3PIUg==}
 
   '@trpc/client@11.6.0':
     resolution: {integrity: sha512-DyWbYk2hd50BaVrXWVkaUnaSwgAF5g/lfBkXtkF1Aqlk6BtSzGUo3owPkgqQO2I5LwWy1+ra9TsSfBBvIZpTwg==}
@@ -6417,6 +6423,8 @@ snapshots:
     dependencies:
       '@tanstack/query-core': 5.90.2
       react: 19.2.1
+
+  '@techstark/opencv-js@5.0.0-release.1': {}
 
   '@trpc/client@11.6.0(@trpc/server@11.6.0(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:
